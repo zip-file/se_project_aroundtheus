@@ -76,6 +76,9 @@
   padding-top: 25px;
   padding-bottom: 25px;
   padding-left: 20px;
+  padding-right: 20px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .card__like-button {
