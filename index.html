@@ -19,7 +19,11 @@
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
-        <img src="./images/Logo.svg" alt="Around the U.S. logo" />
+        <img
+          src="./images/Logo.svg"
+          alt="Around the U.S. logo"
+          class="header__logo"
+        />
       </header>
       <main class="content">
         <section class="profile page__section">
@@ -35,7 +39,7 @@
           </div>
           <button class="profile__add-button"></button>
         </section>
-        <section class="cards page__section"></section>
+        <section class="cards page__section">
           <ul class="cards__list">
             <li class="card">
               <img
@@ -44,7 +48,7 @@
                 class="card__image"
               />
               <div class="card__description">
-                <h2>Lake Louise</h2>
+                <h2 class="card__title">Lake Louise</h2>
                 <button class="card__like-button"></button>
               </div>
             </li>
@@ -55,7 +59,7 @@
                 class="card__image"
               />
               <div class="card__description">
-                <h2>Yosemite</h2>
+                <h2 class="card__title">Yosemite Valley</h2>
                 <button class="card__like-button"></button>
               </div>
             </li>
@@ -66,7 +70,7 @@
                 class="card__image"
               />
               <div class="card__description">
-                <h2>Vanoise</h2>
+                <h2 class="card__title">Vanoise National Park</h2>
                 <button class="card__like-button"></button>
               </div>
             </li>
@@ -77,18 +81,14 @@
                 class="card__image"
               />
               <div class="card__description">
-                <h2>Latemar</h2>
+                <h2 class="card__title">Latemar</h2>
                 <button class="card__like-button"></button>
               </div>
             </li>
             <li class="card">
-              <img
-                src="./images/lago.jpg"
-                alt="lago"
-                class="card__image"
-              />
+              <img src="./images/lago.jpg" alt="lago" class="card__image" />
               <div class="card__description">
-                <h2>Lago</h2>
+                <h2 class="card__title">Lago di Braies</h2>
                 <button class="card__like-button"></button>
               </div>
             </li>
@@ -99,13 +99,16 @@
                 class="card__image"
               />
               <div class="card__description">
-                <h2>Bald Mountains</h2>
+                <h2 class="card__title">Bald Mountains</h2>
                 <button class="card__like-button"></button>
               </div>
             </li>
           </ul>
         </section>
       </main>
+      <footer class="footer page__section">
+        <p class="footer__copyright">© 2024 Justin Johnson</p>
+      </footer>
     </div>
   </body>
 </html>
