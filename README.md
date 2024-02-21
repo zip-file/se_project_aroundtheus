@@ -35,7 +35,7 @@ Here is a iteration of my version of project "Around the U.S." https://zip-file.
 
 **Video Explanation**
 
-This link is to a video I made about the project https://drive.google.com/file/d/1o9Ee4X5YPLGEG4-p0sahamDh_b5md3bX/view?usp=drive_link thank you for viewing !
+This link is to a video I made about the project https://drive.google.com/file/d/1hxwKrxZqZkTusYyf0U42PTsqEq8RRjTA/view?usp=drive_link thank you for viewing !
 
 **Images**
 
