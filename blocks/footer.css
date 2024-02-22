@@ -20,10 +20,11 @@
 @media screen and (max-width: 320px) {
   .footer {
     max-width: 282px;
+    padding-bottom: 36px;
   }
 
   .footer__copyright {
     font-size: 14px;
-    line-height: 16px;
+    line-height: 16.94px;
   }
 }
