@@ -16,6 +16,7 @@
   background-color: #fff;
   margin: auto;
   border-radius: 10px;
+  width: 430px;
 }
 
 .modal__opened {
@@ -43,14 +44,13 @@
 .modal__heading {
   background: rgba(255, 255, 255, 1);
   color: rgba(0, 0, 0);
-  width: 330px;
-  height: 23px;
   font-family: Inter;
   font-size: 24px;
   font-weight: 900;
   line-height: 29px;
   margin-bottom: 54px;
   margin-top: auto;
+  max-width: 100%;
 }
 
 .modal__form {
@@ -77,7 +77,6 @@
   margin-top: 48px;
   color: rgba(255, 255, 255);
   background-color: rgba(0, 0, 0);
-  width: 358px;
   height: 50.15px;
   border-radius: 2px;
 }
@@ -87,15 +86,15 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 320px) {
-  .modal {
-    max-width: 320px;
-  }
-
+@media screen and (max-width: 680px) {
   .modal__close {
+    left: calc(100% - 35px);
+    bottom: calc(100% + 14px);
     width: 26px;
     height: 26px;
-    top: -45px;
-    right: -45px;
+  }
+
+  .modal__container {
+    padding: 25px 22px;
   }
 }
