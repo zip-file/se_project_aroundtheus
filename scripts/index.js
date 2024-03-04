@@ -1,27 +1,27 @@
 const initialCards = [
   {
-    name: "Maryland",
-    link: "https://unsplash.com/photos/man-in-black-jacket-riding-on-motorcycle-on-road-during-daytime-EIN81690PWM",
+    name: "Yosemite",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
   },
   {
-    name: "Philidelphia",
-    link: "https://unsplash.com/photos/city-skyline-during-night-time-PORWKRAI55U",
+    name: "Lake Louise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
   },
   {
-    name: "Los Angeles",
-    link: "https://unsplash.com/photos/red-vehicle-on-the-road-photograph-Zvnf63bvOxk",
+    name: "Bald Mountains",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
   },
   {
-    name: "Washington D.C.",
-    link: "https://unsplash.com/photos/a-pole-with-a-street-sign-on-it-in-front-of-a-building-FPWNqgCw2",
+    name: "Latemar",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
   },
   {
-    name: "Florida",
-    link: "https://unsplash.com/photos/brown-brick-pathway-eYA4DHQi8BI",
+    name: "Vanoise National Park",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
   },
   {
-    name: "New York",
-    link: "https://unsplash.com/photos/cars-on-road-K9set5TFE5U",
+    name: "Lago di Braies",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
 
@@ -44,6 +44,19 @@ function closePopup() {
   profileEditModal.classList.remove("modal__opened");
 }
 
+function getCardElement(cardData) {
+  const cardElement = cardTemplate.cloneNode(true);
+
+  const cardImageEl = cardElement.querySelector(".card__image");
+  const cardTitleEl = cardElement.querySelector(".card__title");
+
+  cardTitleEl.textContent = cardData.name;
+  cardImageEl.src = cardData.link;
+  cardImageEl.alt = cardData.name;
+
+  /*return cardElement;*/
+}
+
 function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
@@ -62,15 +75,6 @@ profileEditCloseButton.addEventListener("click", closePopup);
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 initialCards.forEach((cardData) => {
-  const cardElement = cardTemplate.cloneNode(true);
-
-  const cardImageEl = cardElement.querySelector(".card__image");
-  const cardTitleEl = cardElement.querySelector(".card__title");
-
-  cardTitleEl.textContent = cardData.name;
-  cardImageEl.src = cardData.link;
-  cardImageEl.alt = cardData.name;
-
-  /*return cardElement;*/
-  cardListEl.append(cardElement);
+  const cardElement = getCardElement(cardData);
+  cardListEl.prepend(cardElement);
 });
