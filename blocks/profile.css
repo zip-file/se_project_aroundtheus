@@ -14,7 +14,7 @@
   align-items: center;
 }
 
-.profile__title {
+.profile__name {
   font-family: "Inter", Arial, sans-serif;
   font-size: 42px;
   line-height: 48px;
@@ -94,7 +94,7 @@
     /* max-width: calc(100vh - 100px);*/
   }
 
-  .profile__title {
+  .profile__name {
     line-height: normal;
     font-size: 22px;
     margin: 0;
