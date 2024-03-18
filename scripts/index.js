@@ -54,14 +54,39 @@ const profileEditCloseButton = profileEditModal.querySelector(
 );
 
 const addCardCloseButton = addNewCardModal.querySelector(".modal__close");
+const imagePreviewModal = document.querySelector("#modal-image-preview");
+const imagePreviewImage = imagePreviewModal.querySelector("#preview-image");
+const imagePreviewCloseButton = document.querySelector(
+  "#image-preview-close-button"
+);
+const imageName = imagePreviewModal.querySelector(".modal__image_name");
 
 function closePopup(modal) {
   profileEditModal.classList.remove("modal_opened");
 }
 
+function openImagePreviewModal(imageUrl, name) {
+  imagePreviewImage.src = imageUrl;
+  imageName.textContent = name;
+  imagePreviewModal.classList.add("modal_opened");
+}
+
+function closeImagePreviewModal() {
+  imagePreviewModal.classList.remove("modal_opened");
+}
+
+function handleImagePreviewClick(imageUrl, name) {
+  openImagePreviewModal(imageUrl, name);
+}
+
 function renderCard(cardData, wrapper) {
   const cardElement = getCardElement(cardData);
   wrapper.prepend(cardElement);
+
+  const cardImageEl = cardElement.querySelector(".card__image");
+  cardImageEl.addEventListener("click", () => {
+    handleImagePreviewClick(cardData.link);
+  });
 }
 
 function getCardElement(cardData) {
@@ -69,6 +94,14 @@ function getCardElement(cardData) {
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__title");
   const likeButton = cardElement.querySelector(".card__like-button");
+  const deleteButton = cardElement.querySelector(".card__trash-button");
+  /*const previewImageModal = cardImageEl.querySelector(
+    ".modal__container_preview"
+  )*/
+
+  deleteButton.addEventListener("click", () => {
+    cardElement.remove(cardData);
+  });
 
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_active");
@@ -112,6 +145,10 @@ addNewCardButton.addEventListener("click", () => {
 });
 addCardCloseButton.addEventListener("click", () => {
   addNewCardModal.classList.remove("modal_opened");
+});
+
+imagePreviewCloseButton.addEventListener("click", () => {
+  closeImagePreviewModal();
 });
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));

@@ -103,8 +103,21 @@
       </div>
     </div>
 
+    <div class="modal" id="modal-image-preview">
+      <div class="modal__container modal__container_preview">
+        <button class="modal__close" id="image-preview-close-button"></button>
+        <img src="" alt="" class="card__image" id="preview-image" />
+        <p class="modal__image_name"></p>
+      </div>
+    </div>
+
     <template id="card-template">
       <li class="card">
+        <button
+          class="card__trash-button"
+          type="button"
+          id="card-trash-button"
+        ></button>
         <img src="" alt="" class="card__image" />
         <div class="card__description">
           <h2 class="card__title"></h2>
