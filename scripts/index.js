@@ -85,7 +85,7 @@ function renderCard(cardData, wrapper) {
 
   const cardImageEl = cardElement.querySelector(".card__image");
   cardImageEl.addEventListener("click", () => {
-    handleImagePreviewClick(cardData.link);
+    handleImagePreviewClick(cardData.link, cardData.name);
   });
 }
 
