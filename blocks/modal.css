@@ -6,7 +6,10 @@
   right: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
-  display: none;
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 0.5s, opacity 0.5s linear;
   padding: 0 19px;
 }
 
@@ -25,6 +28,8 @@
 .modal_opened {
   display: flex;
   visibility: visible;
+  opacity: 1;
+  transition-delay: 0s;
 }
 
 .modal__close {
@@ -120,10 +125,12 @@
 
 .modal__container_preview {
   position: relative;
-  padding: 90px 424px;
+  padding: 0;
   background: transparent;
   max-height: 75vh;
   max-width: 75vw;
+  width: auto;
+  height: auto;
   margin: auto;
 }
 
