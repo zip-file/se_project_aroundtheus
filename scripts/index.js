@@ -60,13 +60,16 @@ const imagePreviewCloseButton = document.querySelector(
   "#image-preview-close-button"
 );
 const imageName = imagePreviewModal.querySelector(".modal__image_name");
+const everyModals = document.querySelectorAll(".modal");
 
 function openPopup(popup) {
   popup.classList.add("modal_opened");
+  document.addEventListener("keydown", closeWithEscape);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", closeWithEscape);
 }
 
 function openImagePreviewModal(imageUrl, name) {
@@ -153,3 +156,18 @@ addNewCardEditForm.addEventListener("submit", handleAddCardSubmit);
 imagePreviewCloseButton.addEventListener("click", closeImagePreviewModal);
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
+
+everyModals.forEach((modal) => {
+  modal.addEventListener("click", (evt) => {
+    if (evt.target.classList.contains("modal_opened")) {
+      closeModal(modal);
+    }
+  });
+});
+
+function closeWithEscape(evt) {
+  if (evt.key === "Escape") {
+    const openModal = document.querySelector(".modal_opened");
+    closeModal(openModal);
+  }
+}
