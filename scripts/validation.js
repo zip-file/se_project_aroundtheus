@@ -1,6 +1,17 @@
 // enabling validation by calling enableValidation()
 // pass all the settings on call
 
+function disabledButton(submitButton, inactiveButtonClass) {
+  submitButton.classList.add(inactiveButtonClass);
+  submitButton.disabled = true;
+}
+
+// Function to enable the submit button
+function enabledButton(submitButton, inactiveButtonClass) {
+  submitButton.classList.remove(inactiveButtonClass);
+  submitButton.disabled = false;
+}
+
 function showInputError(formElems, inputElem, { inputErrorClass, errorClass }) {
   const errorMessageEl = formElems.querySelector(`#${inputElem.id}-error`);
   inputElem.classList.add(inputErrorClass);
@@ -29,13 +40,11 @@ function hasInvalidInput(inputList) {
 
 function toggleButtonState(inputElems, submitButton, { inactiveButtonClass }) {
   if (hasInvalidInput(inputElems)) {
-    submitButton.classList.add(inactiveButtonClass);
-    submitButton.disabled = true;
+    disabledButton(submitButton, inactiveButtonClass);
     return;
   }
 
-  submitButton.classList.remove(inactiveButtonClass);
-  submitButton.disabled = false;
+  enabledButton(submitButton, inactiveButtonClass);
 }
 
 function setEventListeners(formElems, options) {
