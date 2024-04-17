@@ -1,3 +1,6 @@
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+
 const initialCards = [
   {
     name: "Yosemite",
@@ -62,6 +65,29 @@ const imagePreviewCloseButton = document.querySelector(
 const imageName = imagePreviewModal.querySelector(".modal__image_name");
 const everyModals = document.querySelectorAll(".modal");
 
+const cardSelector = "#card-template";
+
+const validationSettings = {
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
+const editFormElement = profileEditForm.querySelector(".modal__form");
+const cardFormElement = addNewCardEditForm.querySelector(".modal__form");
+
+const editFormValidator = new FormValidator(
+  validationSettings,
+  editFormElement
+);
+
+const addFormValidator = new FormValidator(validationSettings, cardFormElement);
+
+editFormValidator.enableValidation();
+addFormValidator.enableValidation();
+
 function openPopup(popup) {
   popup.classList.add("modal_opened");
   document.addEventListener("keydown", closeWithEscape);
@@ -89,7 +115,8 @@ function handleImagePreviewClick(imageUrl, name) {
 
 function renderCard(cardData, wrapper) {
   const cardElement = getCardElement(cardData);
-  wrapper.prepend(cardElement);
+  const card = new Card(cardData, cardSelector);
+  wrapper.prepend(card.getElement());
 }
 
 function getCardElement(cardData) {
