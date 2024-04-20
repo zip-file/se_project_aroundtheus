@@ -21,10 +21,10 @@ class Card {
   _setEventListeners() {
     this._likeButton = this._cardElement.querySelector(".card__like-button");
     this._deleteButton = this._cardElement.querySelector(".card__trash-button");
-    this._cardImageEl = this._cardElement.querySelector(".card__image"); // Add this line
+    this._cardImageEl = this._cardElement.querySelector(".card__image");
 
     this._cardImageEl.addEventListener("click", () => {
-      this._handleImagePreviewClick(this._cardData);
+      this._handleImagePreviewClick(this);
     });
 
     this._deleteButton.addEventListener("click", () => {
@@ -36,6 +36,13 @@ class Card {
     });
   }
 
+  _handleImagePreviewClick(imageUrl, cardName) {
+    this._imagePreviewImage.src = imageUrl;
+    this._imagePreviewImage.alt = cardName;
+    this._imageName.textContent = cardName;
+    this._openPopup(imagePreviewModal);
+  }
+
   _handleLikeIcon() {
     this._likeButton.classList.toggle("card__like-button_active");
   }
@@ -43,13 +50,6 @@ class Card {
   _handleDeleteCard() {
     this._cardElement.remove();
     this._cardElement = null;
-  }
-
-  _handleImagePreviewClick(imageUrl, cardName) {
-    imagePreviewImage.src = imageUrl;
-    imagePreviewImage.alt = cardName;
-    imageName.textContent = cardName;
-    openPopup(imagePreviewModal);
   }
 
   _getTemplate() {
@@ -64,7 +64,7 @@ class Card {
     const cardImage = this._element.querySelector(".card__image");
     const cardTitleEl = this._element.querySelector(".card__title");
     cardTitleEl.textContent = this._cardName;
-    cardImage.src = this._link; // Set the image source
+    cardImage.src = this._link;
     cardImage.alt = this._cardName;
     this._setEventListeners();
     return this._element;

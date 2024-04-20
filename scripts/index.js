@@ -121,7 +121,14 @@ function handleImagePreviewClick(imageUrl, name) {
 
 function renderCard(cardData, wrapper) {
   const cardElement = getCardElement(cardData, cardTemplate);
-  const card = new Card(cardData, cardSelector, imagePreviewImage);
+  const card = new Card(
+    cardData,
+    cardSelector,
+    imagePreviewImage,
+    imageName,
+    openPopup,
+    imagePreviewModal
+  );
   wrapper.prepend(card.getElement());
 }
 
