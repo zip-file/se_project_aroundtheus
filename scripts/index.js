@@ -75,18 +75,24 @@ const validationSettings = {
   errorClass: "modal__error_visible",
 };
 
-const editFormElement = profileEditForm.querySelector(".modal__form");
-const cardFormElement = addNewCardEditForm.querySelector(".modal__form");
+const editFormElement = profileEditModal.querySelector(".modal__form");
+const cardFormElement = addNewCardModal.querySelector(".modal__form");
 
-const editFormValidator = new FormValidator(
-  validationSettings,
-  editFormElement
-);
+if (editFormElement) {
+  const editFormValidator = new FormValidator(
+    validationSettings,
+    editFormElement
+  );
+  editFormValidator.enableValidation();
+}
 
-const addFormValidator = new FormValidator(validationSettings, cardFormElement);
-
-editFormValidator.enableValidation();
-addFormValidator.enableValidation();
+if (cardFormElement) {
+  const addFormValidator = new FormValidator(
+    validationSettings,
+    cardFormElement
+  );
+  addFormValidator.enableValidation();
+}
 
 function openPopup(popup) {
   popup.classList.add("modal_opened");
@@ -114,8 +120,8 @@ function handleImagePreviewClick(imageUrl, name) {
 }
 
 function renderCard(cardData, wrapper) {
-  const cardElement = getCardElement(cardData);
-  const card = new Card(cardData, cardSelector);
+  const cardElement = getCardElement(cardData, cardTemplate);
+  const card = new Card(cardData, cardSelector, imagePreviewImage);
   wrapper.prepend(card.getElement());
 }
 
@@ -166,6 +172,13 @@ profileEditButton.addEventListener("click", () => {
   profileNameInput.value = profileName.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
   openPopup(profileEditModal);
+
+  const profileEditForm = profileEditModal.querySelector(".modal__form");
+  const editFormValidator = new FormValidator(
+    validationSettings,
+    profileEditForm
+  );
+  editFormValidator.enableValidation();
 });
 
 profileEditCloseButton.addEventListener("click", () =>
@@ -175,6 +188,13 @@ profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 addNewCardButton.addEventListener("click", () => {
   openPopup(addNewCardModal);
+
+  const cardFormElement = addNewCardEditForm.querySelector(".modal__form");
+  const addFormValidator = new FormValidator(
+    validationSettings,
+    cardFormElement
+  );
+  addFormValidator.enableValidation();
 });
 
 addCardCloseButton.addEventListener("click", () => closeModal(addNewCardModal));
