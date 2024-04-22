@@ -11,11 +11,22 @@ function closeModal(modal) {
 }
 
 class Card {
-  constructor(cardData, cardSelector) {
+  constructor(
+    cardData,
+    cardSelector,
+    imagePreviewImage,
+    imageName,
+    openPopup,
+    imagePreviewModal
+  ) {
     this._cardName = cardData.name;
     this._link = cardData.link;
 
     this._cardSelector = cardSelector;
+    this._imagePreviewImage = imagePreviewImage;
+    this._imageName = imageName;
+    this._openPopup = openPopup;
+    this._imagePreviewModal = imagePreviewModal;
   }
 
   _setEventListeners() {
@@ -24,7 +35,11 @@ class Card {
     this._cardImageEl = this._cardElement.querySelector(".card__image");
 
     this._cardImageEl.addEventListener("click", () => {
-      this._handleImagePreviewClick(this);
+      this._handleImagePreviewClick(
+        this._link,
+        this._cardName,
+        this._imagePreviewImage
+      );
     });
 
     this._deleteButton.addEventListener("click", () => {
@@ -36,11 +51,16 @@ class Card {
     });
   }
 
-  _handleImagePreviewClick(imageUrl, cardName) {
-    this._imagePreviewImage.src = imageUrl;
+  _handleImagePreviewClick(imageUrl, cardName, imagePreviewImage) {
+    console.log(this._link);
+    imagePreviewImage.src = this._link;
+    imagePreviewImage.alt = cardName;
+    this._imageName.textContent = cardName; // assuming this._imageName is a reference to the name element
+    this._openPopup(this._imagePreviewModal);
+    /*this._imagePreviewImage.src = imageUrl;
     this._imagePreviewImage.alt = cardName;
     this._imageName.textContent = cardName;
-    this._openPopup(imagePreviewModal);
+    this._openPopup(imagePreviewModal);*/
   }
 
   _handleLikeIcon() {
