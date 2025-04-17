@@ -7,7 +7,6 @@ class FormValidator {
     this._errorClass = validationSettings.errorClass;
 
     this._form = formElement;
-
     this._setEventListeners();
   }
 
@@ -66,6 +65,14 @@ class FormValidator {
         this.toggleButtonState();
       });
     });
+  }
+
+  // Add this reset method
+  resetValidation() {
+    const submitButton = this._form.querySelector(this._submitButtonSelector);
+    this._disableButton(submitButton);
+    const inputElems = [...this._form.querySelectorAll(this._inputSelector)];
+    inputElems.forEach((inputElem) => this._hideInputError(inputElem));
   }
 
   enableValidation() {
