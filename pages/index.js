@@ -1,5 +1,5 @@
-import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
 
 const initialCards = [
   {
@@ -16,7 +16,7 @@ const initialCards = [
   },
   {
     name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
+    link: "https://practicum-content.s3.us-west-1pw.amazonaws.com/software-engineer/around-project/latemar.jpg",
   },
   {
     name: "Vanoise National Park",
@@ -75,17 +75,17 @@ const validationSettings = {
   errorClass: "modal__error_visible",
 };
 
-const editFormElement = profileEditModal.querySelector(".modal__form");
-const cardFormElement = addNewCardModal.querySelector(".modal__form");
-
 const editFormValidator = new FormValidator(
   validationSettings,
-  editFormElement
+  profileEditForm
 );
 editFormValidator.enableValidation();
 
-const addFormValidator = new FormValidator(validationSettings, cardFormElement);
-addFormValidator.enableValidation();
+let addFormValidator;
+if (addNewCardEditForm) {
+  addFormValidator = new FormValidator(validationSettings, addNewCardEditForm);
+  addFormValidator.enableValidation();
+}
 
 function openPopup(popup) {
   popup.classList.add("modal_opened");
@@ -108,19 +108,15 @@ function closeImagePreviewModal() {
   closeModal(imagePreviewModal);
 }
 
-function handleImagePreviewClick(imageUrl, name) {
-  openImagePreviewModal(imageUrl, name);
+function handleImageClick(imageUrl, name) {
+  imagePreviewImage.src = imageUrl;
+  imagePreviewImage.alt = name;
+  imageName.textContent = name;
+  openPopup(imagePreviewModal);
 }
 
 function renderCard(cardData, wrapper) {
-  const card = new Card(
-    cardData,
-    cardSelector,
-    imagePreviewImage,
-    imageName,
-    openPopup,
-    imagePreviewModal
-  );
+  const card = new Card(cardData, cardSelector, handleImageClick);
   wrapper.prepend(card.getElement());
 }
 
@@ -143,7 +139,6 @@ function handleAddCardSubmit(e) {
   newCardTitleInput.value = "";
   newCardLinkInput.value = "";
   addFormValidator.resetValidation();
-
   closeModal(addNewCardModal);
 }
 
@@ -162,8 +157,9 @@ profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addNewCardButton.addEventListener("click", () => {
   newCardTitleInput.value = "";
   newCardLinkInput.value = "";
-  addFormValidator.resetValidation();
   openPopup(addNewCardModal);
+  addFormValidator.resetValidation();
+  addFormValidator.toggleButtonState();
 });
 
 addCardCloseButton.addEventListener("click", () => closeModal(addNewCardModal));
@@ -188,3 +184,6 @@ function closeWithEscape(evt) {
     closeModal(openModal);
   }
 }
+
+// if you see this yes thank you, first code you reviewed I realized it was my same old code then
+// I instantly remembered to update my code in github lol

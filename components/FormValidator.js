@@ -7,7 +7,6 @@ class FormValidator {
     this._errorClass = validationSettings.errorClass;
 
     this._form = formElement;
-    this._setEventListeners();
   }
 
   _showInputError(inputElem) {
@@ -67,7 +66,6 @@ class FormValidator {
     });
   }
 
-  // Add this reset method
   resetValidation() {
     const submitButton = this._form.querySelector(this._submitButtonSelector);
     this._disableButton(submitButton);
